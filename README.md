@@ -226,7 +226,7 @@ module "server_key" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| name | The resource name of the key. Must be unique within the project, conform with RFC-1034, and match [a-z]([a-z0-9-]{0,61}[a-z0-9])? | `string` | n/a | yes |
+| name | The resource name of the key. Must be unique within the project, conform with RFC-1034, and match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?` | `string` | n/a | yes |
 | project_id | The project ID where the API key will be created | `string` | n/a | yes |
 | display_name | Human-readable display name of this API key | `string` | `null` | no |
 | service_account_email | Email of the service account the key is bound to. If specified, the key is a service account bound key | `string` | `null` | no |
