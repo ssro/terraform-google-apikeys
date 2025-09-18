@@ -19,7 +19,7 @@ This Terraform module creates and manages Google Cloud API Keys with comprehensi
 
 ```hcl
 module "api_key" {
-  source = "git::https://github.com/your-org/terraform-google-apikeys.git"
+  source = "git::https://github.com/ssro/terraform-google-apikeys.git"
 
   name         = "my-api-key"
   display_name = "My Application API Key"
@@ -31,7 +31,7 @@ module "api_key" {
 
 ```hcl
 module "comprehensive_api_key" {
-  source = "git::https://github.com/your-org/terraform-google-apikeys.git"
+  source = "git::https://github.com/ssro/terraform-google-apikeys.git"
 
   name         = "comprehensive-api-key"
   display_name = "Comprehensive API Key Example"
@@ -99,7 +99,7 @@ module "comprehensive_api_key" {
 
 ```hcl
 module "android_key" {
-  source = "git::https://github.com/your-org/terraform-google-apikeys.git"
+  source = "git::https://github.com/ssro/terraform-google-apikeys.git"
 
   name         = "android-app-key"
   display_name = "Android Application Key"
@@ -138,7 +138,7 @@ module "android_key" {
 
 ```hcl
 module "web_key" {
-  source = "git::https://github.com/your-org/terraform-google-apikeys.git"
+  source = "git::https://github.com/ssro/terraform-google-apikeys.git"
 
   name         = "web-app-key"
   display_name = "Web Application Key"
@@ -175,7 +175,7 @@ module "web_key" {
 
 ```hcl
 module "server_key" {
-  source = "git::https://github.com/your-org/terraform-google-apikeys.git"
+  source = "git::https://github.com/ssro/terraform-google-apikeys.git"
 
   name         = "server-key"
   display_name = "Server API Key"
