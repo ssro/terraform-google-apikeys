@@ -66,5 +66,5 @@ variable "api_targets" {
 variable "enable_secret_manager" {
   description = "If set to true, the API key string will be stored in Google Secret Manager."
   type        = bool
-  default     = true
+  default     = false
 }
