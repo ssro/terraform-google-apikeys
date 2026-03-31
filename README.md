@@ -17,7 +17,7 @@ Terraform module for creating and managing Google Cloud API Keys with optional S
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.2"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.3"
 
   project     = "my-gcp-project"
   name_prefix = "my-app"
@@ -28,7 +28,7 @@ module "api_key" {
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.2"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.3"
 
   project      = "my-gcp-project"
   name_prefix  = "my-app"
@@ -52,7 +52,7 @@ module "api_key" {
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.2"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.3"
 
   project               = "my-gcp-project"
   name_prefix           = "my-app"
@@ -70,7 +70,7 @@ Change `name_suffix` to trigger a safe replacement without changing the key name
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.2"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.3"
 
   project     = "my-gcp-project"
   name_prefix = "my-app"
