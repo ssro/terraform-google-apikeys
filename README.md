@@ -17,7 +17,7 @@ Terraform module for creating and managing Google Cloud API Keys with optional S
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.5"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.6"
 
   project     = "my-gcp-project"
   name_prefix = "my-app"
@@ -28,7 +28,7 @@ module "api_key" {
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.5"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.6"
 
   project      = "my-gcp-project"
   name_prefix  = "my-app"
@@ -51,7 +51,7 @@ module "api_key" {
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.5"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.6"
 
   project     = "my-gcp-project"
   name_prefix = "my-app"
@@ -70,7 +70,7 @@ Changing `name_suffix` creates a new key before destroying the old one, enabling
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.5"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.6"
 
   project     = "my-gcp-project"
   name_prefix = "my-app"
@@ -82,7 +82,7 @@ module "api_key" {
 
 ```hcl
 module "api_key" {
-  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.5"
+  source = "github.com/ssro/terraform-google-apikeys?ref=v0.0.6"
 
   project               = "my-gcp-project"
   name_prefix           = "my-app"
