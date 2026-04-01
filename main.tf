@@ -2,10 +2,10 @@ locals {
   key_name = var.name_suffix != null ? "${var.name_prefix}-${var.name_suffix}" : var.name_prefix
 
   restriction_count = (
-    (var.browser_key_restrictions != null ? 1 : 0) +
-    (var.server_key_restrictions != null ? 1 : 0) +
-    (length(var.android_key_restrictions) > 0 ? 1 : 0) +
-    (var.ios_key_restrictions != null ? 1 : 0)
+  (var.browser_key_restrictions != null ? 1 : 0) +
+  (var.server_key_restrictions != null ? 1 : 0) +
+  (length(var.android_key_restrictions) > 0 ? 1 : 0) +
+  (var.ios_key_restrictions != null ? 1 : 0)
   )
 
   secret_id = var.secret_manager_secret_id != null ? var.secret_manager_secret_id : local.key_name
@@ -42,11 +42,6 @@ resource "google_apikeys_key" "this" {
     precondition {
       condition     = local.restriction_count <= 1
       error_message = "Only one of browser_key_restrictions, server_key_restrictions, android_key_restrictions, or ios_key_restrictions may be set at a time."
-    }
-
-    precondition {
-      condition     = can(regex("^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$", local.key_name))
-      error_message = "The constructed key name \"${local.key_name}\" does not match the required pattern [a-z]([a-z0-9-]{0,61}[a-z0-9])?. Check name_prefix and name_suffix."
     }
   }
 
