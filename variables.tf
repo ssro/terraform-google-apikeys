@@ -6,18 +6,56 @@ variable "project" {
 variable "name_prefix" {
   description = "Prefix for the API key resource name."
   type        = string
+
+  validation {
+    condition     = can(regex("^[a-z][a-z0-9-]*$", var.name_prefix))
+    error_message = "name_prefix must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens."
+  }
 }
 
 variable "name_suffix" {
   description = "A version suffix (e.g., v1, v2). Changing this triggers a safe replacement/rotation."
   type        = string
   default     = null
+
+  validation {
+    condition     = var.name_suffix == null || can(regex("^[a-z0-9-]+$", var.name_suffix))
+    error_message = "name_suffix must contain only lowercase letters, numbers, and hyphens."
+  }
 }
 
 variable "display_name" {
   description = "Human-readable name for the key in the Google Cloud Console."
   type        = string
   default     = null
+}
+
+variable "labels" {
+  description = "Labels to apply to the API key resource."
+  type        = map(string)
+  default     = {}
+}
+
+# --- Auth ---
+
+variable "service_account_email" {
+  description = "Email of the service account to bind the key to. Enables service account bound key auth."
+  type        = string
+  default     = null
+}
+
+# --- API enablement ---
+
+variable "enable_apis" {
+  description = "Whether to automatically enable apikeys.googleapis.com (and secretmanager.googleapis.com if needed)."
+  type        = bool
+  default     = true
+}
+
+variable "disable_services_on_destroy" {
+  description = "Whether to disable the APIs when the module is destroyed."
+  type        = bool
+  default     = false
 }
 
 # --- Restrictions ---
@@ -63,8 +101,54 @@ variable "api_targets" {
   }))
   default = []
 }
+
+# --- Secret Manager ---
+
 variable "enable_secret_manager" {
-  description = "If set to true, the API key string will be stored in Google Secret Manager."
+  description = "If true, the API key string will be stored in Google Secret Manager."
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "secret_manager_secret_id" {
+  description = "The Secret Manager secret ID to use. Defaults to the constructed key name."
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.secret_manager_secret_id == null || can(regex("^[a-zA-Z0-9_-]{1,255}$", var.secret_manager_secret_id))
+    error_message = "secret_manager_secret_id must be 1-255 chars and contain only letters, numbers, hyphens, and underscores."
+  }
+}
+
+variable "secret_manager_replica_locations" {
+  description = "List of regions to replicate the secret to. Defaults to [\"us-central1\"]."
+  type        = list(string)
+  default     = ["us-central1"]
+}
+
+variable "secret_manager_labels" {
+  description = "Labels to apply to the Secret Manager secret."
+  type        = map(string)
+  default     = {}
+}
+
+# --- Timeouts ---
+
+variable "timeout_create" {
+  description = "Timeout for create operations."
+  type        = string
+  default     = "20m"
+}
+
+variable "timeout_update" {
+  description = "Timeout for update operations."
+  type        = string
+  default     = "20m"
+}
+
+variable "timeout_delete" {
+  description = "Timeout for delete operations."
+  type        = string
+  default     = "20m"
 }
