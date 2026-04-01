@@ -52,14 +52,14 @@ resource "google_apikeys_key" "this" {
       dynamic "browser_key_restrictions" {
         for_each = var.browser_key_restrictions != null ? [var.browser_key_restrictions] : []
         content {
-          allowed_referrers = browser_key_restrictions.value.allowed_referrers
+          allowed_referrers = sort(browser_key_restrictions.value.allowed_referrers)
         }
       }
 
       dynamic "server_key_restrictions" {
         for_each = var.server_key_restrictions != null ? [var.server_key_restrictions] : []
         content {
-          allowed_ips = server_key_restrictions.value.allowed_ips
+          allowed_ips = sort(server_key_restrictions.value.allowed_ips)
         }
       }
 
@@ -79,7 +79,7 @@ resource "google_apikeys_key" "this" {
       dynamic "ios_key_restrictions" {
         for_each = var.ios_key_restrictions != null ? [var.ios_key_restrictions] : []
         content {
-          allowed_bundle_ids = ios_key_restrictions.value.allowed_bundle_ids
+          allowed_bundle_ids = sort(ios_key_restrictions.value.allowed_bundle_ids)
         }
       }
 
@@ -87,7 +87,7 @@ resource "google_apikeys_key" "this" {
         for_each = var.api_targets
         content {
           service = api_targets.value.service
-          methods = api_targets.value.methods
+          methods = api_targets.value.methods != null ? sort(api_targets.value.methods) : null
         }
       }
     }
