@@ -6,11 +6,6 @@ variable "project" {
 variable "name_prefix" {
   description = "Prefix for the API key resource name."
   type        = string
-
-  validation {
-    condition     = can(regex("^[a-z][a-z0-9-]*$", var.name_prefix))
-    error_message = "name_prefix must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens."
-  }
 }
 
 variable "name_suffix" {
