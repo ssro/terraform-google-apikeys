@@ -1,28 +1,40 @@
 output "key_id" {
-  description = "The resource name of the key (projects/PROJECT_NUMBER/locations/global/keys/KEY_ID)."
+  description = "Full resource ID of the API key (projects/.../locations/global/keys/...)."
   value       = google_apikeys_key.this.id
 }
 
-output "key_uid" {
-  description = "The unique UUID4 identifier for the key."
-  value       = google_apikeys_key.this.uid
-}
-
 output "key_string" {
-  description = "The raw API key string (Sensitive)."
+  description = "Raw API key value."
   value       = google_apikeys_key.this.key_string
   sensitive   = true
 }
 
-output "secret_name" {
-  description = "The name of the secret in Secret Manager (if enabled)."
-  value       = var.enable_secret_manager ? google_secret_manager_secret.key_vault[0].name : null
+output "key_uid" {
+  description = "Unique ID of the key in UUID4 format."
+  value       = google_apikeys_key.this.uid
 }
 
-output "secret_version" {
-  description = "The specific version resource name (if enabled)."
-  value       = var.enable_secret_manager ? google_secret_manager_secret_version.key_version[0].name : null
+output "key_name" {
+  description = "The constructed resource name of the key (prefix[-suffix])."
+  value       = google_apikeys_key.this.name
 }
+
 output "display_name" {
-  value = google_apikeys_key.this.display_name
+  description = "Human-readable display name of the key."
+  value       = google_apikeys_key.this.display_name
+}
+
+output "secret_manager_secret_id" {
+  description = "The Secret Manager secret ID (if enable_secret_manager = true)."
+  value       = var.enable_secret_manager ? google_secret_manager_secret.this[0].secret_id : null
+}
+
+output "secret_manager_secret_name" {
+  description = "The full Secret Manager secret name (if enable_secret_manager = true)."
+  value       = var.enable_secret_manager ? google_secret_manager_secret.this[0].name : null
+}
+
+output "secret_manager_version_name" {
+  description = "The full Secret Manager secret version name (if enable_secret_manager = true)."
+  value       = var.enable_secret_manager ? google_secret_manager_secret_version.this[0].name : null
 }
